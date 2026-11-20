@@ -55,11 +55,13 @@ public class HealthInterface {
         mContext = appContext == null ? context : appContext;
         sService = getService();
 
+        // The feature is declared on every device, but HealthInterfaceService only publishes
+        // itself when the device has a charging control HAL. Without one the service is absent
+        // by design, so do not throw: every call below checks for the service and reports
+        // "not supported" or a default.
         if (context.getPackageManager().hasSystemFeature(
                 LineageContextConstants.Features.HEALTH) && sService == null) {
-            throw new RuntimeException("Unable to get HealthInterfaceService. The service" +
-                    " either crashed, was not started, or the interface has been called too early" +
-                    " in SystemServer init");
+            Log.i(TAG, "HealthInterfaceService is not available (no charging control HAL?)");
         }
     }
 
