@@ -543,6 +543,9 @@ public class LineageDatabaseHelper extends SQLiteOpenHelper{
             loadBooleanSetting(stmt, LineageSettings.System.SWAP_VOLUME_KEYS_ON_ROTATION,
                     R.bool.def_swap_volume_keys_on_rotation);
 
+            loadBooleanSetting(stmt, LineageSettings.System.LOCKSCREEN_ROTATION,
+                    R.bool.def_lockscreen_rotation);
+
             loadIntegerSetting(stmt, LineageSettings.System.STATUS_BAR_BATTERY_STYLE,
                     R.integer.def_battery_style);
 
